@@ -1,11 +1,6 @@
 import './style.css';
-import {saveToLocalStorage} from './checkbox.js';
-import {retrieveLocalStorage} from './checkbox.js';
-import {checkboxFunctions} from './checkbox.js';
-import {saveChanges} from './checkbox.js';
-import { showTrashBin } from './add-and-remove.js';
-import {deleteCompleted} from './add-and-remove.js';
-import { countBy } from 'lodash'; // eslint-disable-line
+import {saveToLocalStorage, retrieveLocalStorage, checkboxFunctions, saveChanges} from './checkbox.js';
+import { showTrashBin, deleteCompleted } from './add-and-remove.js';
 
 export let renderList = (item, num) => {
   const listContainer = document.getElementById('list-container');
@@ -48,6 +43,7 @@ let enter = () => {
     alert ("Please enter something");
     return false
   }
+  
   addNewTask();
   document.getElementById('input').value = '';
 }
@@ -64,7 +60,7 @@ let addNewTask = () => {
   if(localStorage.getItem('todos').length < 3){
     indexing = 0;
   }else {
-    var arrayFromStroage = JSON.parse(localStorage.getItem("todos"));
+    const arrayFromStroage = JSON.parse(localStorage.getItem("todos"));
     const lastItem = arrayFromStroage[arrayFromStroage.length - 1];
     indexing = lastItem.index + 1;
   }

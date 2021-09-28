@@ -1,4 +1,3 @@
-import { indexOf } from "lodash"; // eslint-disable-line
 
 export function removeItem(obj){
     obj.remove();
@@ -15,21 +14,18 @@ export let deleteCompleted = () => {
   let existingEntries = JSON.parse(localStorage.getItem('todos'));
   let deletedItems = existingEntries.filter(obj => obj.completed !== true);
   localStorage.setItem('todos', JSON.stringify(deletedItems));
-  for (let i = 0; i < completedTasks.length; i++){
-  completedTasks[i].parentElement.remove();
-   }
+  completedTasks.forEach(task => task.parentElement.remove());
+
    changeIndexes();
 }
 
 export let changeIndexes = () => {
   let lis = document.querySelectorAll('LI');
   let existingEntries = JSON.parse(localStorage.getItem('todos'));
-  for (let i = 0; i < existingEntries.length; i++){
-    existingEntries[i].index = i;
-    lis[i].id = i;
-  }
+  existingEntries.forEach((existingEntry, index) => existingEntry.index = index);
+  lis.forEach((li, index) => li.id = index);
+
   localStorage.setItem('todos', JSON.stringify(existingEntries));
-  //location.reload();
   
 }
 

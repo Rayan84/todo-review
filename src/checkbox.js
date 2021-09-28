@@ -1,5 +1,4 @@
 import {renderList} from './index.js';
-import _ from 'lodash'; // eslint-disable-line
 export function checkboxFunctions(){
     let checkedItme = this.parentNode.parentNode.id;
     let existingEntries = JSON.parse(localStorage.getItem('todos'));
@@ -17,10 +16,7 @@ export function checkboxFunctions(){
 export function retrieveLocalStorage() {
     if (localStorage.getItem('todos') !== null){
         let existingEntries = JSON.parse(localStorage.getItem('todos'));
-        for (let i = 0; i < existingEntries.length; i++ ){
-            let indexing = (existingEntries[i].index);
-            renderList(existingEntries[i], indexing);
-         }
+        existingEntries.forEach(existingEntry => renderList(existingEntry, existingEntry.index));
         }else {
             localStorage.setItem('todos', '[]');
     }
